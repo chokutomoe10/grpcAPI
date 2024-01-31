@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package protobuf;
+
+option go_package = "protobuf/";
+
+service Crud {
+	rpc GetAllUsers (Empty) returns (stream UserInfo);
+	rpc CreateUser (UserInfo) returns (Id);
+	rpc UpdateUser (UserInfo) returns (Status);
+	rpc DeleteUser (Id) returns (Status);
+}
+
+message Empty {}
+
+message UserInfo {
+	string name = 1;
+	string role_id = 2;
+	string role_name = 3;
+	string email = 4;
+}
+
+message Id {
+	string value = 1;
+}
+
+message Status {
+	int32 value = 1; 
+}
+
